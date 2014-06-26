@@ -16,15 +16,20 @@ class ViewController: UIViewController {
         segment.center = CGPointMake(160, 200)
         
         
-        segment = self.segmentedControlSemicircleWithItems(["one","two","three"])
-        self.view.addSubview(segment)
+        var circlesegment = self.segmentedControlSemicircleWithItems(["one","two","three"])
+        self.view.addSubview(circlesegment)
         
-        segment.center = CGPointMake(160, 400)
+        circlesegment.center = CGPointMake(160, 400)
+        circlesegment.selectedSegmentIndex = 2
+        circlesegment.addTarget(self, action: "circlesegmentValueChanged:", forControlEvents: UIControlEvents.ValueChanged)
         
         
         // Do any additional setup after loading the view.
     }
 
+    func circlesegmentValueChanged(seg:YYSegmentedControl){
+        println(seg.selectedSegmentIndex)
+    }
     
     func segmentedNormalControlWithItems(items:NSArray)->YYSegmentedControl{
         var segmentedControl = YYSegmentedControl(items:items)
