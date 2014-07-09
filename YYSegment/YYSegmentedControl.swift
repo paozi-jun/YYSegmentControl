@@ -168,12 +168,15 @@ class YYSegmentedControl: UIControl {
     var _selectedSegmentIndex:Int?
     var selectedSegmentIndex:Int?{
     set{
-        self._selectedSegmentIndex = newValue
-        if self._selectedSegmentIndex! >= self.numberOfSegments {
-            self._selectedSegmentIndex = self.numberOfSegments!-1
+        if self._selectedSegmentIndex != newValue{
+            self._selectedSegmentIndex = newValue
+            if self._selectedSegmentIndex! >= self.numberOfSegments {
+                self._selectedSegmentIndex = self.numberOfSegments!-1
+            }
+            
+            self.moveSelectedSegmentIndicatorToSegment(index:self._selectedSegmentIndex!,animated:false)
+            self.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
-        
-        self.moveSelectedSegmentIndicatorToSegment(index:self._selectedSegmentIndex!,animated:false)
     }
     get{
         return self._selectedSegmentIndex
